@@ -15,7 +15,6 @@ You need to have Node.js and npm installed on your machine. If you don't have th
    
 ### 🔧 API
 
-#### GET
 * /api/chat - POST request to feed a message in the req body to openai API.
 * /api/test - GET request to calls a free api for testing purposes.
 
