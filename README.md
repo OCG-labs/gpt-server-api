@@ -20,9 +20,17 @@ You need to have Node.js and npm installed on your machine. If you don't have th
 
 ### Usage
 
-Interaction with the OpenAI API is made easy with this simple Node server. Simply edit the model to your liking in server/server.js
+Interaction with the OpenAI API is made easy with this simple Node server. 
+
+* Edit the model to your liking in server/server.js
 
 <img width="831" alt="Screenshot 2024-05-03 at 12 38 03 PM" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/7950dd55-63b5-41a4-ba47-59436cf9917e">
+
+* Using the /api/chat endpoint, send a post request with a body including a message for [chat completion](https://platform.openai.com/docs/guides/text-generation/chat-completions-api)
+
+<img width="1710" alt="Screenshot 2024-05-03 at 12 40 49 PM" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/df644464-410e-4cd4-9270-2e8e62b672fd">
+
+HTTP Response will be content from a JSON object.
 
 ## 🛠️ Built With
 
