@@ -3,11 +3,23 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { OpenAI } from 'openai';
 import fetch from 'node-fetch';
+import fs from 'fs';
 
 dotenv.config(); // Initialize environment variables
 let PORT = process.env.PORT || 4000; // Set port
 const app = express(); // Initialize express
 const openai = new OpenAI(process.env.OPENAI_API_KEY); // Initialize OpenAI API
+
+let OPENAI_API_KEY;
+
+// Check if the Docker secret file exists
+if (fs.existsSync('/run/secrets/openai_api_key')) {
+  // Read the API key from the Docker secret
+  OPENAI_API_KEY = fs.readFileSync('/run/secrets/openai_api_key', 'utf8').trim();
+} else {
+  // Fall back to using the environment variable
+  OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+}
 
 // Middleware
 app.use(
@@ -45,7 +57,7 @@ app.post('/api/chat', async (req, res, next) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
+        'Authorization': `Bearer ${OPENAI_API_KEY}`
       },
       body: JSON.stringify({
         model: 'gpt-4',
