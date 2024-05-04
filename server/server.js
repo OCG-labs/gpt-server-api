@@ -8,7 +8,6 @@ import fs from 'fs';
 dotenv.config(); // Initialize environment variables
 let PORT = process.env.PORT || 4000; // Set port
 const app = express(); // Initialize express
-const openai = new OpenAI(process.env.OPENAI_API_KEY); // Initialize OpenAI API
 
 let OPENAI_API_KEY;
 
@@ -18,7 +17,7 @@ if (fs.existsSync('/run/secrets/openai_api_key')) {
   OPENAI_API_KEY = fs.readFileSync('/run/secrets/openai_api_key', 'utf8').trim();
 } else {
   // Fall back to using the environment variable
-  OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+  console.log("No api key")
 }
 
 // Middleware
