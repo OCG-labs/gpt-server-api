@@ -39,7 +39,13 @@ Included in the root directory are a Dockerfile and a docker-compose.yml. This a
 #### Local Docker Deployment
 
 * Ensure docker daemon is installed on the local machine (Docker Desktop)
-* Run ```Bash docker-compose up```
+* Ensure you have a api_txt file in the root directory containing Openai api key
+* Ensure you have a .env file with Port variable
+* Run ```docker-compose up``` to spin up the image and container via docker-compose.yml file.
+* The server should now be running locally on specified port and can be tested with [end points]().
+
+#### Hosted Docker Deployment
+
 
 #### Docker Secrets
 
