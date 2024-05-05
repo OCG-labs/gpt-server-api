@@ -32,6 +32,18 @@ Interaction with the OpenAI API is made easy with this simple Node server.
 
 HTTP Response will be content from a JSON object.
 
+### Docker
+
+Included in the root directory are a Dockerfile and a docker-compose.yml. This allows the server to be spun up as a docker container locally, or on a hosted service that supports docker deployment.
+
+#### Local Docker Deployment
+
+* Ensure docker daemon is installed on the local machine (Docker Desktop)
+* Run ```Bash docker-compose up```
+
+#### Docker Secrets
+
+
 ## 🛠️ Built With
 
 * <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/javascript-colored.svg" width="36" height="36" alt="JavaScript" /> - Core language used</a>
