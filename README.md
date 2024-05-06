@@ -11,7 +11,8 @@ You need to have Node.js and npm installed on your machine. If you don't have th
 1. Fork and clone the repo.
 2. Navigate to the project directory.
 3. Run `npm install` to install the dependencies.
-4. If you want to run the server locally, run `npm start` to start the server. Otherwise proceed to [Docker Section](https://github.com/OCG-labs/gpt-server-api/blob/main/README.md#docker) to deploy with Docker.
+4. Proceed to [Docker Section](https://github.com/OCG-labs/gpt-server-api/blob/main/README.md#docker) to deploy with Docker.
+
    
 ### 🔧 API
 
@@ -38,9 +39,32 @@ Included in the root directory are a Dockerfile and a docker-compose.yml. This a
 
 #### Local Docker Deployment
 
-* Ensure docker daemon is installed on the local machine (Docker Desktop)
-* Ensure you have a api_txt file in the root directory containing Openai api key
-* Ensure you have a .env file with Port variable
+* Ensure docker daemon is installed on the local machine (Docker Desktop).
+* Ensure you have a api_txt file in the root directory containing Openai api key.
+* Ensure you have a .env file with Port variable.
+* Change
+```JavaScript
+// Check if the Docker secret file exists
+if (fs.existsSync('/etc/secrets/openai_api_key')) {
+  // Read the API key from the Docker secret
+  OPENAI_API_KEY = fs.readFileSync('/etc/secrets/openai_api_key', 'utf8').trim();
+} else {
+  // Log error
+  console.log("No api key")
+}
+```
+To
+```JavaScript
+// Check if the Docker secret file exists
+if (fs.existsSync('/run/secrets/openai_api_key')) {
+  // Read the API key from the Docker secret
+  OPENAI_API_KEY = fs.readFileSync('/run/secrets/openai_api_key', 'utf8').trim();
+} else {
+  // Log error
+  console.log("No api key")
+}
+```
+
 * Run ```docker-compose up``` to spin up the image and container via docker-compose.yml file.
 * The server should now be running locally on specified port and can be tested with [end points](https://github.com/OCG-labs/gpt-server-api/blob/main/README.md#-api).
 
