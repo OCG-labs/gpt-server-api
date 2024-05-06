@@ -107,10 +107,10 @@ app.post('/api/chat/prompt', async (req, res, next) => {
 
     const data = await response.json();
     const dataString = data["choices"][0]["message"]["content"];
-    const dataArray = dataString.split(",");
-    const arrayWithoutPeriods = dataArray.map(item => item.replace('.', ''));
-    console.log(arrayWithoutPeriods);
-    res.json(arrayWithoutPeriods); // Chat String output
+    const dataArray = dataString.split("|");
+
+    console.log(dataArray);
+    res.json(dataArray); // Chat String output
   }
   catch (err) {
     next(err); // Pass error to error handler
