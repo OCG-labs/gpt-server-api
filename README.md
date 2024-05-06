@@ -73,16 +73,18 @@ if (fs.existsSync('/run/secrets/openai_api_key')) {
 [Render](https://render.com/) will be used as a example of hosted Docker deployment.
 
 * Click on the **New +** button to create a new deployed asset.
-* Choose Web service option
+* Choose Web service option.
    
 <img width="439" alt="Screenshot 2024-05-05 at 07 23 34" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/0190b266-e6dc-4859-b09e-8f9dca147c3e">
 
-* Link github repo
+* Link github repo.
 
 <img width="727" alt="Screenshot 2024-05-05 at 07 23 40" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/320fb6fb-6f4b-4541-8fc6-468904a3dccc">
 
+* Ensure runtime displays "Docker".
 
 <img width="823" alt="Screenshot 2024-05-05 at 07 24 54" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/f3a2b894-e79b-4971-b98a-3bfd27b5ab83">
+
 <img width="1300" alt="Screenshot 2024-05-05 at 07 25 37" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/adff735e-8f45-4de1-a89d-1133780987ad">
 <img width="1243" alt="Screenshot 2024-05-05 at 07 25 58" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/350a62e9-0130-43bf-b0e5-13af49655e18">
 <img width="1027" alt="Screenshot 2024-05-05 at 07 26 28" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/00c92c0f-9b40-4bb3-ab66-d21e08dd27e3">
