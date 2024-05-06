@@ -11,14 +11,15 @@ You need to have Node.js and npm installed on your machine. If you don't have th
 1. Fork and clone the repo.
 2. Navigate to the project directory.
 3. Run `npm install` to install the dependencies.
-4. Run `npm start` to start the server.
+4. Proceed to [Docker Section](https://github.com/OCG-labs/gpt-server-api/blob/main/README.md#-docker) to deploy with Docker.
+
    
 ### 🔧 API
 
 * /api/chat - POST request to feed a message in the req body to openai API.
 * /api/test - GET request to calls a free api for testing purposes.
 
-### Usage
+#### API Usage
 
 Interaction with the OpenAI API is made easy with this simple Node server. 
 
@@ -32,29 +33,76 @@ Interaction with the OpenAI API is made easy with this simple Node server.
 
 HTTP Response will be content from a JSON object.
 
-### Docker
+### 🚢 Docker
 
 Included in the root directory are a Dockerfile and a docker-compose.yml. This allows the server to be spun up as a docker container locally, or on a hosted service that supports docker deployment.
 
 #### Local Docker Deployment
 
-* Ensure docker daemon is installed on the local machine (Docker Desktop)
-* Ensure you have a api_txt file in the root directory containing Openai api key
-* Ensure you have a .env file with Port variable
+* Ensure docker daemon is installed on the local machine (Docker Desktop).
+* Ensure you have a api_txt file in the root directory containing Openai api key.
+* Ensure you have a .env file with Port variable.
+* Change
+```JavaScript
+// Check if the Docker secret file exists
+if (fs.existsSync('/etc/secrets/openai_api_key')) {
+  // Read the API key from the Docker secret
+  OPENAI_API_KEY = fs.readFileSync('/etc/secrets/openai_api_key', 'utf8').trim();
+} else {
+  // Log error
+  console.log("No api key")
+}
+```
+To
+```JavaScript
+// Check if the Docker secret file exists
+if (fs.existsSync('/run/secrets/openai_api_key')) {
+  // Read the API key from the Docker secret
+  OPENAI_API_KEY = fs.readFileSync('/run/secrets/openai_api_key', 'utf8').trim();
+} else {
+  // Log error
+  console.log("No api key")
+}
+```
+
 * Run ```docker-compose up``` to spin up the image and container via docker-compose.yml file.
 * The server should now be running locally on specified port and can be tested with [end points](https://github.com/OCG-labs/gpt-server-api/blob/main/README.md#-api).
 
 #### Hosted Docker Deployment
 
-[Render]() will be used as a example of hosted Docker deployment.
+[Render](https://render.com/) will be used as a example of hosted Docker deployment.
+
+* Click on the **New +** button to create a new deployed asset.
+* Choose **Web service** option.
+   
 <img width="439" alt="Screenshot 2024-05-05 at 07 23 34" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/0190b266-e6dc-4859-b09e-8f9dca147c3e">
+
+* Link **github repo**.
+
 <img width="727" alt="Screenshot 2024-05-05 at 07 23 40" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/320fb6fb-6f4b-4541-8fc6-468904a3dccc">
-<img width="823" alt="Screenshot 2024-05-05 at 07 24 54" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/f3a2b894-e79b-4971-b98a-3bfd27b5ab83">
+
+* Ensure runtime displays **"Docker"**.
+
 <img width="1300" alt="Screenshot 2024-05-05 at 07 25 37" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/adff735e-8f45-4de1-a89d-1133780987ad">
+
+* Add .env PORT variable and Docker secret file labeled as "open_ai_key".
+  
 <img width="1243" alt="Screenshot 2024-05-05 at 07 25 58" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/350a62e9-0130-43bf-b0e5-13af49655e18">
+
 <img width="1027" alt="Screenshot 2024-05-05 at 07 26 28" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/00c92c0f-9b40-4bb3-ab66-d21e08dd27e3">
 
-#### Docker Secrets
+After deployment, test end points to verify deployment success.
+
+#### 🔒 Docker Secrets
+
+### 🐅 Vtiger Usage
+
+Once you are on the workflow designer, set up a web-service call and associated action once data is received.
+
+<img width="652" alt="Screenshot 2024-05-06 at 9 48 36 AM" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/29f2aa87-46bf-4125-9a77-c0645cb6b259">
+
+Use
+<img width="1153" alt="Screenshot 2024-05-06 at 9 50 18 AM" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/bb8ba39c-9016-4449-93cd-82e5cf9f4a97">
 
 
 ## 🛠️ Built With
