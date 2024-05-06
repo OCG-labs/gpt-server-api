@@ -88,10 +88,21 @@ if (fs.existsSync('/run/secrets/openai_api_key')) {
 * Add .env PORT variable and Docker secret file labeled as "open_ai_key".
   
 <img width="1243" alt="Screenshot 2024-05-05 at 07 25 58" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/350a62e9-0130-43bf-b0e5-13af49655e18">
+
 <img width="1027" alt="Screenshot 2024-05-05 at 07 26 28" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/00c92c0f-9b40-4bb3-ab66-d21e08dd27e3">
+
+After deployment, test end points to verify deployment success.
 
 #### 🔒 Docker Secrets
 
+### 🐅 Vtiger Usage
+
+Once you are on the workflow designer, set up a web-service call and associated action once data is received.
+
+<img width="652" alt="Screenshot 2024-05-06 at 9 48 36 AM" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/29f2aa87-46bf-4125-9a77-c0645cb6b259">
+
+Use
+<img width="1153" alt="Screenshot 2024-05-06 at 9 50 18 AM" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/bb8ba39c-9016-4449-93cd-82e5cf9f4a97">
 
 
 ## 🛠️ Built With
