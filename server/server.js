@@ -1,7 +1,6 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import { OpenAI } from 'openai';
 import fetch from 'node-fetch';
 import fs from 'fs';
 
@@ -16,11 +15,11 @@ if (fs.existsSync('/etc/secrets/openai_api_key')) {
   // Read the API key from the Docker secret
   OPENAI_API_KEY = fs.readFileSync('/etc/secrets/openai_api_key', 'utf8').trim();
 } else {
-  // Fall back to using the environment variable
+  // Log error
   console.log("No api key")
 }
 
-// Middleware
+/////////////////////////////// Middleware ///////////////////////////////
 app.use(
   express.json(),
   express.static('public'),
@@ -31,7 +30,8 @@ app.use(
   })
 )
 
-// API Routes
+/////////////////////////////// API Routes ///////////////////////////////
+
 // Test GET request
 app.get('/api/test', async (req, res, next) => {
   try {
@@ -70,7 +70,7 @@ app.post('/api/chat', async (req, res, next) => {
     });
 
     const data = await response.json();
-    res.json(data["choices"][0]["message"]["content"]);
+    res.json(data["choices"][0]["message"]["content"]); // Chat String output
   }
   catch (err) {
     next(err); // Pass error to error handler
