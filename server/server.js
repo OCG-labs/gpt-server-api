@@ -70,7 +70,11 @@ app.post('/api/chat', async (req, res, next) => {
     });
 
     const data = await response.json();
-    res.json(data["choices"][0]["message"]["content"]); // Chat String output
+    const dataString = data["choices"][0]["message"]["content"];
+    const dataArray = dataString.split(",");
+    const arrayWithoutPeriods = dataArray.map(item => item.replace('.', ''));
+    console.log(arrayWithoutPeriods);
+    res.json(arrayWithoutPeriods); // Chat String output
   }
   catch (err) {
     next(err); // Pass error to error handler
