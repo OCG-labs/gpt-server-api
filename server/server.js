@@ -44,8 +44,44 @@ app.get('/api/test', async (req, res, next) => {
   }
 });
 
-// Post request to chat API
-app.post('/api/chat', async (req, res, next) => {
+// Post request generate topics
+app.post('/api/chat/topic', async (req, res, next) => {
+  let userMessage = req.body.message; // Get message from request body
+
+  if (userMessage === "") {
+    return res.status(400).send("Message cannot be empty");
+  }
+  try {
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: 'gpt-4',
+        messages: [
+          {
+            role: 'user',
+            content: userMessage
+          }
+        ]
+      })
+    });
+
+    const data = await response.json();
+    const dataString = data["choices"][0]["message"]["content"];
+    const dataArray = dataString.split(",");
+    const arrayWithoutPeriods = dataArray.map(item => item.replace('.', ''));
+    res.json(arrayWithoutPeriods); // Chat String output
+  }
+  catch (err) {
+    next(err); // Pass error to error handler
+  }
+});
+
+// Post request generate prompt
+app.post('/api/chat/prompt', async (req, res, next) => {
   let userMessage = req.body.message; // Get message from request body
 
   if (userMessage === "") {
