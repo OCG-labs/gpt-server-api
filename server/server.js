@@ -132,7 +132,7 @@ app.post('/api/chat/article', async (req, res, next) => {
         'Authorization': `Bearer ${OPENAI_API_KEY}`
       },
       body: JSON.stringify({
-        model: 'gpt-4',
+        model: 'gpt-4-turbo',
         messages: [
           {
             role: 'user',
