@@ -11,7 +11,7 @@ You need to have Node.js and npm installed on your machine. If you don't have th
 1. Fork and clone the repo.
 2. Navigate to the project directory.
 3. Run `npm install` to install the dependencies.
-4. Run `npm start` to start the server.
+4. If you want to run the server locally, run `npm start` to start the server. Otherwise proceed to [Docker Section]() to deploy with Docker.
    
 ### 🔧 API
 
