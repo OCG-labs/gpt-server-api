@@ -32,6 +32,31 @@ Interaction with the OpenAI API is made easy with this simple Node server.
 
 HTTP Response will be content from a JSON object.
 
+### Docker
+
+Included in the root directory are a Dockerfile and a docker-compose.yml. This allows the server to be spun up as a docker container locally, or on a hosted service that supports docker deployment.
+
+#### Local Docker Deployment
+
+* Ensure docker daemon is installed on the local machine (Docker Desktop)
+* Ensure you have a api_txt file in the root directory containing Openai api key
+* Ensure you have a .env file with Port variable
+* Run ```docker-compose up``` to spin up the image and container via docker-compose.yml file.
+* The server should now be running locally on specified port and can be tested with [end points](https://github.com/OCG-labs/gpt-server-api/blob/main/README.md#-api).
+
+#### Hosted Docker Deployment
+
+[Render]() will be used as a example of hosted Docker deployment.
+<img width="439" alt="Screenshot 2024-05-05 at 07 23 34" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/0190b266-e6dc-4859-b09e-8f9dca147c3e">
+<img width="727" alt="Screenshot 2024-05-05 at 07 23 40" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/320fb6fb-6f4b-4541-8fc6-468904a3dccc">
+<img width="823" alt="Screenshot 2024-05-05 at 07 24 54" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/f3a2b894-e79b-4971-b98a-3bfd27b5ab83">
+<img width="1300" alt="Screenshot 2024-05-05 at 07 25 37" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/adff735e-8f45-4de1-a89d-1133780987ad">
+<img width="1243" alt="Screenshot 2024-05-05 at 07 25 58" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/350a62e9-0130-43bf-b0e5-13af49655e18">
+<img width="1027" alt="Screenshot 2024-05-05 at 07 26 28" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/00c92c0f-9b40-4bb3-ab66-d21e08dd27e3">
+
+#### Docker Secrets
+
+
 ## 🛠️ Built With
 
 * <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/javascript-colored.svg" width="36" height="36" alt="JavaScript" /> - Core language used</a>

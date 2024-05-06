@@ -1,0 +1,15 @@
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app
+    secrets:
+      - openai_api_key
+    environment:
+      - PORT=3000
+
+secrets:
+  openai_api_key:
+    file: ./api_key.txt
