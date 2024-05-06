@@ -11,7 +11,7 @@ You need to have Node.js and npm installed on your machine. If you don't have th
 1. Fork and clone the repo.
 2. Navigate to the project directory.
 3. Run `npm install` to install the dependencies.
-4. Proceed to [Docker Section](https://github.com/OCG-labs/gpt-server-api/blob/main/README.md#docker) to deploy with Docker.
+4. Proceed to [Docker Section](https://github.com/OCG-labs/gpt-server-api/blob/main/README.md#-docker) to deploy with Docker.
 
    
 ### 🔧 API
