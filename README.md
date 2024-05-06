@@ -49,10 +49,11 @@ Included in the root directory are a Dockerfile and a docker-compose.yml. This a
 [Render](https://render.com/) will be used as a example of hosted Docker deployment.
 
 * Click on the **New +** button to create a new deployed asset.
+* Choose Web service option
    
 <img width="439" alt="Screenshot 2024-05-05 at 07 23 34" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/0190b266-e6dc-4859-b09e-8f9dca147c3e">
 
-* 
+
 
 <img width="727" alt="Screenshot 2024-05-05 at 07 23 40" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/320fb6fb-6f4b-4541-8fc6-468904a3dccc">
 <img width="823" alt="Screenshot 2024-05-05 at 07 24 54" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/f3a2b894-e79b-4971-b98a-3bfd27b5ab83">
