@@ -133,6 +133,7 @@ app.post('/api/chat/article', async (req, res, next) => {
       },
       body: JSON.stringify({
         model: 'gpt-4-turbo-2024-04-09',
+        response_format: { type: "json_object" },
         messages: [
           {
             role: 'user',
@@ -148,6 +149,44 @@ app.post('/api/chat/article', async (req, res, next) => {
 
     console.log(dataArray);
     res.json(dataArray); // Chat String output
+  }
+  catch (err) {
+    next(err); // Pass error to error handler
+  }
+});
+
+// Post request generate prompt
+app.post('/api/chat/page', async (req, res, next) => {
+  let userMessage = req.body.message; // Get message from request body
+
+  if (userMessage === "") {
+    return res.status(400).send("Message cannot be empty");
+  }
+  try {
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: 'gpt-4-turbo-2024-04-09',
+        response_format: { type: "json_object" },
+        messages: [
+          {
+            role: 'user',
+            content: userMessage
+          }
+        ]
+      })
+    });
+
+    const data = await response.json();
+    // const dataString = data["choices"][0]["message"]["content"];
+    // const dataArray = dataString.split("|");
+
+    console.log(data);
+    res.json(data); // Chat String output
   }
   catch (err) {
     next(err); // Pass error to error handler
