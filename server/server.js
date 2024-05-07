@@ -760,8 +760,9 @@ app.post('/api/chat/page/contact', async (req, res, next) => {
   }
 
   try {
-    console.log(contactPageJson);
-    res.json(contactPageJson); // send JSON string for content area
+    const data = JSON.stringify(contactPageJson);
+    console.log(data);
+    res.json(data); // send JSON string for content area
   }
   catch (err) {
     next(err); // Pass error to error handler
