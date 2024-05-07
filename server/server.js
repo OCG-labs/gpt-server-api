@@ -11,9 +11,9 @@ const app = express(); // Initialize express
 let OPENAI_API_KEY;
 
 // Check if the Docker secret file exists
-if (fs.existsSync('/etc/secrets/openai_api_key')) {
+if (fs.existsSync('/run/secrets/openai_api_key')) {
   // Read the API key from the Docker secret
-  OPENAI_API_KEY = fs.readFileSync('/etc/secrets/openai_api_key', 'utf8').trim();
+  OPENAI_API_KEY = fs.readFileSync('/run/secrets/openai_api_key', 'utf8').trim();
 } else {
   // Log error
   console.log("No api key")
@@ -186,11 +186,11 @@ app.post('/api/chat/page', async (req, res, next) => {
     });
 
     const data = await response.json();
-    // const dataString = data["choices"][0]["message"]["content"];
-    // const dataArray = dataString.split("|");
+    const dataJson = data["choices"][0]["message"]["content"]; // Grab JSON string
+    const parsedData = JSON.parse(dataJson); // Parse JSON string
 
-    console.log(data);
-    res.json(data); // Chat String output
+    console.log(dataJson);
+    res.json(parsedData); // Chat String output
   }
   catch (err) {
     next(err); // Pass error to error handler
