@@ -174,6 +174,10 @@ app.post('/api/chat/page', async (req, res, next) => {
         response_format: { type: "json_object" },
         messages: [
           {
+            "role": "system",
+            "content": "json"
+          },
+          {
             role: 'user',
             content: userMessage
           }
