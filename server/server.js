@@ -190,7 +190,7 @@ app.post('/api/chat/page', async (req, res, next) => {
     const parsedData = JSON.parse(dataJson); // Parse JSON string
 
     console.log(dataJson);
-    res.json(parsedData); // Chat String output
+    res.json(dataJson); // Chat String output
   }
   catch (err) {
     next(err); // Pass error to error handler
