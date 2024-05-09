@@ -100,6 +100,8 @@ After deployment, test end points to verify deployment success.
 
 #### 🔒 Docker Secrets
 
+API keys are valuable and are not secure when placed inside of a .env file of the docker container. For this reason, you want to create a docker secret file for added security. *IMPORTANT NOTE: This method is not entirely secure. For maximum security, use docker swarm.*
+
 ### 🐅 Vtiger Usage
 
 Once you are on the workflow designer, set up a web-service call and associated action once data is received.
