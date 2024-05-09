@@ -204,6 +204,7 @@ app.post('/api/chat/page/contact', async (req, res, next) => {
   let address = req.body.address;
   let email = req.body.email;
   let primaryPhone = req.body.primaryPhone;
+  let map = req.body.map;
 
   let contactPageJson = {
     "id": 0,
@@ -243,7 +244,7 @@ app.post('/api/chat/page/contact', async (req, res, next) => {
               "original": {
                 "image_type": "2",
                 "attachment_size": "full",
-                "code-php": "<iframe src=\"https:\/\/www.google.com\/maps\/embed?pb=!1m18!1m12!1m3!1d3081.7039909936398!2d-119.71147274891631!3d39.43081762282873!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8099143addf99ea1%3A0xdc95f28eb631f51a!2s2750%20Trail%20Rider%20Dr%2C%20Reno%2C%20NV%2089521!5e0!3m2!1sen!2sus!4v1670955334344!5m2!1sen!2sus\"  width=\"100%\" height=\"100%\"  style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"><\/iframe>",
+                "code-php": map,
                 "width-unit": "%",
                 "width": "100",
                 "height-unit": "%",
