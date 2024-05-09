@@ -108,7 +108,7 @@ Once you are on the workflow designer, set up a web-service call and associated 
 
 <img width="652" alt="Screenshot 2024-05-06 at 9 48 36 AM" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/29f2aa87-46bf-4125-9a77-c0645cb6b259">
 
-Use
+Use the parameter section and name it "message". Make the value your prompt to GPT. *IMPORTANT NOTE: GPT is in JSON mode so your prompt needs to say, "Return a JSON object with the following structure:"*
 
 <img width="1153" alt="Screenshot 2024-05-06 at 9 50 18 AM" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/bb8ba39c-9016-4449-93cd-82e5cf9f4a97">
 
