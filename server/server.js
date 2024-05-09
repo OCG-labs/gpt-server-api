@@ -11,9 +11,9 @@ const app = express(); // Initialize express
 let OPENAI_API_KEY;
 
 // Check if the Docker secret file exists
-if (fs.existsSync('/etc/secrets/openai_api_key')) {
+if (fs.existsSync('/run/secrets/openai_api_key')) {
   // Read the API key from the Docker secret
-  OPENAI_API_KEY = fs.readFileSync('/etc/secrets/openai_api_key', 'utf8').trim();
+  OPENAI_API_KEY = fs.readFileSync('/run/secrets/openai_api_key', 'utf8').trim();
 } else {
   // Log error
   console.log("No api key")
@@ -59,8 +59,13 @@ app.post('/api/chat/topic', async (req, res, next) => {
         'Authorization': `Bearer ${OPENAI_API_KEY}`
       },
       body: JSON.stringify({
-        model: 'gpt-4',
+        model: 'gpt-4-turbo-2024-04-09',
+        response_format: { type: "json_object" },
         messages: [
+          {
+            "role": "system",
+            "content": "json"
+          },
           {
             role: 'user',
             content: userMessage
@@ -70,10 +75,10 @@ app.post('/api/chat/topic', async (req, res, next) => {
     });
 
     const data = await response.json();
-    const dataString = data["choices"][0]["message"]["content"];
-    const dataArray = dataString.split(",");
-    const arrayWithoutPeriods = dataArray.map(item => item.replace('.', ''));
-    res.json(arrayWithoutPeriods); // Chat String output
+    const dataJson = data["choices"][0]["message"]["content"]; // Grab JSON string
+    // const dataArray = dataString.split(",");
+    // const arrayWithoutPeriods = dataArray.map(item => item.replace('.', ''));
+    res.json(JSON.parse(dataJson)); // Chat String output
   }
   catch (err) {
     next(err); // Pass error to error handler
