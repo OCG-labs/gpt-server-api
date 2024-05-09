@@ -412,7 +412,7 @@ app.post('/api/chat/page/contact', async (req, res, next) => {
                               "nicename": "Text",
                               "activeselector": false,
                               "ct_depth": false,
-                              "ct_content": "(123) 456-7890",
+                              "ct_content": primaryPhone,
                               "hover": {
                                 "color": "var(--secondary-hover-color)"
                               }
