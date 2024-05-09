@@ -16,18 +16,23 @@ You need to have Node.js and npm installed on your machine. If you don't have th
    
 ### 🔧 API
 
-* /api/chat - POST request to feed a message in the req body to openai API.
-* /api/test - GET request to calls a free api for testing purposes.
+* /api/chat/article - POST request that takes in a message and returns a JSON object.
+  
+<img width="1784" alt="Screenshot 2024-05-09 at 10 02 10 AM" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/b2d84e6e-a550-495b-877c-ce71e2d409fd">
 
+* /api/test - GET request to calls a free api for testing purposes.
+  
 #### API Usage
 
 Interaction with the OpenAI API is made easy with this simple Node server. 
 
-* Edit the model to your liking in server/server.js
+##### /chat/article
+
+* Edit the GPT model to your liking in server/server.js
 
 <img width="831" alt="Screenshot 2024-05-03 at 12 38 03 PM" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/7950dd55-63b5-41a4-ba47-59436cf9917e">
 
-* Using the /api/chat endpoint, send a post request with a body including a message for [chat completion](https://platform.openai.com/docs/guides/text-generation/chat-completions-api)
+* Using the /api/chat/article endpoint, send a post request with a body including a message for [chat completion](https://platform.openai.com/docs/guides/text-generation/chat-completions-api)
 
 <img width="1710" alt="Screenshot 2024-05-03 at 12 40 49 PM" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/df644464-410e-4cd4-9270-2e8e62b672fd">
 
@@ -102,6 +107,7 @@ Once you are on the workflow designer, set up a web-service call and associated 
 <img width="652" alt="Screenshot 2024-05-06 at 9 48 36 AM" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/29f2aa87-46bf-4125-9a77-c0645cb6b259">
 
 Use
+
 <img width="1153" alt="Screenshot 2024-05-06 at 9 50 18 AM" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/bb8ba39c-9016-4449-93cd-82e5cf9f4a97">
 
 
