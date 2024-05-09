@@ -94,7 +94,8 @@ if (fs.existsSync('/run/secrets/openai_api_key')) {
   
 <img width="1243" alt="Screenshot 2024-05-05 at 07 25 58" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/350a62e9-0130-43bf-b0e5-13af49655e18">
 
-<img width="1027" alt="Screenshot 2024-05-05 at 07 26 28" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/00c92c0f-9b40-4bb3-ab66-d21e08dd27e3">
+<img width="1019" alt="Screenshot 2024-05-09 at 11 28 28 AM" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/64a451ab-9bd8-4485-bbe7-3ed488227e48">
+
 
 After deployment, test end points to verify deployment success.
 
