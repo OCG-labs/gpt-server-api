@@ -132,7 +132,7 @@ app.post('/api/chat/article/post', async (req, res, next) => {
   let password = req.body.password;
   let apiUrl = 'https://dgradytesting.tempurl.host/wp-json/wp/v2/posts';
   let postObj = {
-    "title": req.body.content,
+    "title": req.body.title,
 
     "content": `${req.body.content}`,
 
@@ -151,7 +151,7 @@ app.post('/api/chat/article/post', async (req, res, next) => {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    res.status(200).send("Post created");
+    res.json(postObj);
   }
   catch (err) {
     next(err); // Pass error to error handler
