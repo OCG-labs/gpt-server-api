@@ -136,7 +136,7 @@ app.post('/api/chat/article/post', async (req, res, next) => {
 
     "content": `${req.body.content}`,
 
-    "status": 'publish'
+    "status": 'draft'
   }
   try {
     const response = await fetch(apiUrl, {
