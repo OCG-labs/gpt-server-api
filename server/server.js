@@ -85,83 +85,7 @@ app.post('/api/chat/topic', async (req, res, next) => {
 });
 
 // Post request generate prompt
-app.post('/api/chat/prompt', async (req, res, next) => {
-  let userMessage = req.body.message; // Get message from request body
-
-  if (userMessage === "") {
-    return res.status(400).send("Message cannot be empty");
-  }
-  try {
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${OPENAI_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: 'gpt-4',
-        messages: [
-          {
-            role: 'user',
-            content: userMessage
-          }
-        ]
-      })
-    });
-
-    const data = await response.json();
-    const dataString = data["choices"][0]["message"]["content"];
-    const dataArray = dataString.split("|");
-
-    console.log(dataArray);
-    res.json(dataArray); // Chat String output
-  }
-  catch (err) {
-    next(err); // Pass error to error handler
-  }
-});
-
-// Post request generate prompt
 app.post('/api/chat/article', async (req, res, next) => {
-  let userMessage = req.body.message; // Get message from request body
-
-  if (userMessage === "") {
-    return res.status(400).send("Message cannot be empty");
-  }
-  try {
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${OPENAI_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: 'gpt-4-turbo-2024-04-09',
-        response_format: { type: "json_object" },
-        messages: [
-          {
-            role: 'user',
-            content: userMessage
-          }
-        ]
-      })
-    });
-
-    const data = await response.json();
-    const dataString = data["choices"][0]["message"]["content"];
-    const dataArray = dataString.split("|");
-
-    console.log(dataArray);
-    res.json(dataArray); // Chat String output
-  }
-  catch (err) {
-    next(err); // Pass error to error handler
-  }
-});
-
-// Page Routes
-// Generate website page json
-app.post('/api/chat/page', async (req, res, next) => {
   let userMessage = req.body.message; // Get message from request body
 
   if (userMessage === "") {
@@ -192,15 +116,15 @@ app.post('/api/chat/page', async (req, res, next) => {
 
     const data = await response.json();
     const dataJson = data["choices"][0]["message"]["content"]; // Grab JSON string
-    //const parsedData = JSON.parse(dataJson); // Parse JSON string
-
-    console.log(dataJson);
-    res.json(dataJson); // send JSON string for content area
+    console.log(JSON.parse(dataJson));
+    res.json(JSON.parse(dataJson)); // Chat String output
   }
   catch (err) {
     next(err); // Pass error to error handler
   }
 });
+
+// Page Routes
 
 app.post('/api/chat/page/contact', async (req, res, next) => {
   let openHours = req.body.openHours;
