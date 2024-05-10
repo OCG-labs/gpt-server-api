@@ -13,9 +13,9 @@ const app = express(); // Initialize express
 let OPENAI_API_KEY;
 
 // Check if the Docker secret file exists
-if (fs.existsSync('/run/secrets/openai_api_key')) {
+if (fs.existsSync('/etc/secrets/openai_api_key')) {
   // Read the API key from the Docker secret
-  OPENAI_API_KEY = fs.readFileSync('/run/secrets/openai_api_key', 'utf8').trim();
+  OPENAI_API_KEY = fs.readFileSync('/etc/secrets/openai_api_key', 'utf8').trim();
 } else {
   // Log error
   console.log("No api key")
