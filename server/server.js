@@ -1,9 +1,11 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import fetch from 'node-fetch';
+import fetch, { Headers } from 'node-fetch';
 import fs from 'fs';
+import { Buffer } from 'buffer';
 
+const headers = new Headers();
 dotenv.config(); // Initialize environment variables
 let PORT = process.env.PORT || 4000; // Set port
 const app = express(); // Initialize express
@@ -11,9 +13,9 @@ const app = express(); // Initialize express
 let OPENAI_API_KEY;
 
 // Check if the Docker secret file exists
-if (fs.existsSync('/etc/secrets/openai_api_key')) {
+if (fs.existsSync('/run/secrets/openai_api_key')) {
   // Read the API key from the Docker secret
-  OPENAI_API_KEY = fs.readFileSync('/etc/secrets/openai_api_key', 'utf8').trim();
+  OPENAI_API_KEY = fs.readFileSync('/run/secrets/openai_api_key', 'utf8').trim();
 } else {
   // Log error
   console.log("No api key")
@@ -124,9 +126,62 @@ app.post('/api/chat/article', async (req, res, next) => {
   }
 });
 
+// Post request generate prompt
+app.post('/api/chat/article/post', async (req, res, next) => {
+  let username = 'ocgdev';
+  let password = req.body.password;
+  let apiUrl = 'https://dgradytesting.tempurl.host/wp-json/wp/v2/posts';
+  let postObj = {
+    "title": req.body.content,
+
+    "content": `${req.body.content}`,
+
+    "status": 'publish'
+  }
+  try {
+    const response = await fetch(apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64')
+      },
+      body: JSON.stringify(postObj)
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    res.status(200).send("Post created");
+  }
+  catch (err) {
+    next(err); // Pass error to error handler
+  }
+});
+
+app.get('/api/chat/article/posttest', async (req, res, next) => {
+  let username = 'ocgdev';
+  let password = 'Iputty9126!';
+  let apiUrl = 'https://dgradytesting.tempurl.host/wp-json/wp/v2/posts';
+  try {
+    const response = await fetch(apiUrl, {
+      headers: {
+        'Authorization': 'Basic ' + Buffer.from(username + ':' + password).toString('base64')
+      }
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    res.send(data);
+  }
+  catch (err) {
+    next(err); // Pass error to error handler
+  }
+});
+
 // Page Routes
 
-app.post('/api/chat/page/contact', async (req, res, next) => {
+app.post('/api/chat/post/contact', async (req, res, next) => {
   let openHours = req.body.openHours;
   let closedHours = req.body.closedHours;
   let address = req.body.address;
