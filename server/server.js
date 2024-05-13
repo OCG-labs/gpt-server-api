@@ -76,7 +76,7 @@ app.post('/api/chat/article', async (req, res, next) => {
     });
 
     const data = await response.json();
-    const dataJson = data["choices"][0]["message"]["content"]; // Grab JSON string
+    const dataJson = data; // Grab JSON string
     console.log(JSON.parse(dataJson));
     res.json(JSON.parse(dataJson)); // Chat String output
   }
