@@ -130,7 +130,7 @@ app.post('/api/chat/article', async (req, res, next) => {
 app.post('/api/chat/article/post', async (req, res, next) => {
   let username = 'ocgdev';
   let password = req.body.password;
-  let apiUrl = 'https://dgradytesting.tempurl.host/wp-json/wp/v2/posts';
+  let apiUrl = `${req.body.url}/wp-json/wp/v2/posts`;
   let postObj = {
     "title": req.body.title,
 
@@ -152,27 +152,6 @@ app.post('/api/chat/article/post', async (req, res, next) => {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     res.json(postObj);
-  }
-  catch (err) {
-    next(err); // Pass error to error handler
-  }
-});
-
-app.get('/api/chat/article/posttest', async (req, res, next) => {
-  let username = 'ocgdev';
-  let password = 'Iputty9126!';
-  let apiUrl = 'https://dgradytesting.tempurl.host/wp-json/wp/v2/posts';
-  try {
-    const response = await fetch(apiUrl, {
-      headers: {
-        'Authorization': 'Basic ' + Buffer.from(username + ':' + password).toString('base64')
-      }
-    });
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    const data = await response.json();
-    res.send(data);
   }
   catch (err) {
     next(err); // Pass error to error handler
