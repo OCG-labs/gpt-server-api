@@ -60,7 +60,7 @@ app.post('/api/chat/article', async (req, res, next) => {
         'Authorization': `Bearer ${OPENAI_API_KEY}`
       },
       body: JSON.stringify({
-        model: 'gpt-4',
+        model: 'gpt-4-turbo',
         response_format: { type: "json_object" },
         messages: [
           {
@@ -76,8 +76,8 @@ app.post('/api/chat/article', async (req, res, next) => {
     });
 
     const data = await response.json();
-    const dataJson = data; // Grab JSON string
-    console.log(JSON.parse(dataJson));
+    const dataJson = data["choices"][0]["message"]["content"]; // Grab JSON string
+    console.log(data);
     res.json(JSON.parse(dataJson)); // Chat String output
   }
   catch (err) {
