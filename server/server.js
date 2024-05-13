@@ -5,7 +5,6 @@ import fetch, { Headers } from 'node-fetch';
 import fs from 'fs';
 import { Buffer } from 'buffer';
 
-const headers = new Headers();
 dotenv.config(); // Initialize environment variables
 let PORT = process.env.PORT || 4000; // Set port
 const app = express(); // Initialize express
@@ -46,47 +45,7 @@ app.get('/api/test', async (req, res, next) => {
   }
 });
 
-// Post request generate topics
-app.post('/api/chat/topic', async (req, res, next) => {
-  let userMessage = req.body.message; // Get message from request body
-
-  if (userMessage === "") {
-    return res.status(400).send("Message cannot be empty");
-  }
-  try {
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${OPENAI_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: 'gpt-4-turbo-2024-04-09',
-        response_format: { type: "json_object" },
-        messages: [
-          {
-            "role": "system",
-            "content": "json"
-          },
-          {
-            role: 'user',
-            content: userMessage
-          }
-        ]
-      })
-    });
-
-    const data = await response.json();
-    const dataJson = data["choices"][0]["message"]["content"]; // Grab JSON string
-    console.log(JSON.parse(dataJson));
-    res.json(JSON.parse(dataJson)); // Chat String output
-  }
-  catch (err) {
-    next(err); // Pass error to error handler
-  }
-});
-
-// Post request generate prompt
+// Post request that returns a chat json object
 app.post('/api/chat/article', async (req, res, next) => {
   let userMessage = req.body.message; // Get message from request body
 
@@ -101,7 +60,7 @@ app.post('/api/chat/article', async (req, res, next) => {
         'Authorization': `Bearer ${OPENAI_API_KEY}`
       },
       body: JSON.stringify({
-        model: 'gpt-4-turbo-2024-04-09',
+        model: 'gpt-3.5-turbo',
         response_format: { type: "json_object" },
         messages: [
           {
@@ -126,7 +85,7 @@ app.post('/api/chat/article', async (req, res, next) => {
   }
 });
 
-// Post request generate prompt
+// Post request to post article to wordpress
 app.post('/api/chat/article/post', async (req, res, next) => {
   let username = 'ocgdev';
   let password = req.body.password;
