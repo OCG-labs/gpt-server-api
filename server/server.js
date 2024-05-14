@@ -734,7 +734,7 @@ app.post('/api/chat/post/about', async (req, res, next) => {
       let responseData = JSON.parse(dataJson);
       metaTitle = responseData["metaTitle"];
       metaDescription = responseData["metaDescription"];
-      return JSON.parse(responseData);
+      return JSON.parse(responseData.data);
     }
     catch (err) {
       next(err); // Pass error to error handler
