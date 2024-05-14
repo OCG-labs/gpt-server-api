@@ -739,9 +739,9 @@ app.post('/api/chat/post/about', async (req, res, next) => {
     responseContent = await getContent(userMessage);
     console.log(responseContent);
     let h2Content = responseContent["h2Content"]; // About Company
-    let h2Heading = responseContent["h2Heading"]; // About company
+    let h2Heading = responseContent["h2Header"]; // About company
     let h3Heading = responseContent["h3Content"]; // CTA
-    let h3Content = responseContent["h3Heading"]; // CTA Content
+    let h3Content = responseContent["h3Header"]; // CTA Content
 
 
     let aboutPageJson = {
