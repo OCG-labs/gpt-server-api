@@ -694,6 +694,7 @@ app.post('/api/chat/post/contact', async (req, res, next) => {
 
 app.post('/api/chat/post/about', async (req, res, next) => {
   let userMessage = req.body.message; // Get message from request body
+  let responseContent = {};
 
   const getContent = async (userMessage) => {
 
@@ -735,7 +736,7 @@ app.post('/api/chat/post/about', async (req, res, next) => {
     }
   }
   const getOxyContent = async () => {
-    const responseContent = await getContent(userMessage);
+    responseContent = getContent(userMessage);
     console.log(responseContent);
     let h2Content = responseContent["h2Content"]; // About Company
     let h2Heading = responseContent["h2Heading"]; // About company
