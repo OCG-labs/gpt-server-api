@@ -693,420 +693,465 @@ app.post('/api/chat/post/contact', async (req, res, next) => {
 });
 
 app.post('/api/chat/post/about', async (req, res, next) => {
-  let h2Content = req.body.h2Content; // About Company
-  let h2Heading = req.body.h2Heading; // About company
-  let h3Heading = req.body.h3Heading; // CTA
-  let h3Content = req.body.h3Content; // CTA Content
+  let userMessage = req.body.message; // Get message from request body
 
+  const getContent = async (userMessage) => {
 
-  let aboutPageJson = {
-    "id": 0,
-    "name": "root",
-    "depth": 0,
-    "children": [
-      {
-        "id": 128,
-        "name": "ct_section",
-        "options": {
-          "ct_id": 128,
-          "ct_parent": 0,
-          "selector": "section-128-22",
-          "original": {
-            "background-image": "https:\/\/jsontesting.tempurl.host\/wp-content\/uploads\/2023\/02\/about_hero_1920x520.jpg",
-            "overlay-color": "rgba(255,255,255,0.25)",
-            "background-size": "cover",
-            "background-repeat": "no-repeat",
-            "background-position-top": "20",
-            "background-position-top-unit": "%",
-            "container-padding-top-unit": "",
-            "container-padding-bottom-unit": "",
-            "container-padding-right-unit": "",
-            "container-padding-left-unit": "",
-            "padding-top-unit": "",
-            "padding-right-unit": "",
-            "padding-bottom-unit": "",
-            "padding-left-unit": "",
-            "margin-top-unit": "",
-            "margin-right-unit": "",
-            "margin-bottom-unit": "",
-            "margin-left-unit": "",
-            "width-unit": "",
-            "min-width-unit": "",
-            "min-width": "",
-            "max-width-unit": "",
-            "max-width": "",
-            "height-unit": "",
-            "height": "",
-            "min-height-unit": "",
-            "min-height": "",
-            "max-height-unit": "",
-            "max-height": "",
-            "background-position-left-unit": "%",
-            "background-position-left": "100",
-            "background-blend-mode": "multiply",
-            "display": "flex",
-            "flex-direction": "row",
-            "align-items": "center",
-            "justify-content": "center"
-          },
-          "nicename": "Hero 8",
-          "classes": [
-            "masthd-height"
-          ],
-          "activeselector": false,
-          "ct_depth": 1,
-          "media": {
-            "phone-landscape": {
-              "original": {
-                "background-position-left": "65",
-                "background-position-left-unit": "%"
-              }
+    if (userMessage === "") {
+      return res.status(400).send("Message cannot be empty");
+    }
+
+    try {
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${OPENAI_API_KEY}`
+        },
+        body: JSON.stringify({
+          model: 'gpt-4-turbo',
+          response_format: { type: "json_object" },
+          messages: [
+            {
+              "role": "system",
+              "content": "json"
             },
-            "phone-portrait": {
-              "original": {
-                "background-position-left": "50",
-                "background-position-left-unit": "%"
-              }
+            {
+              role: 'user',
+              content: userMessage
             }
-          }
-        },
-        "children": [
-          {
-            "id": 129,
-            "name": "ct_div_block",
-            "options": {
-              "ct_id": 129,
-              "ct_parent": 128,
-              "selector": "div_block-129-22",
-              "classes": [
-                "w-5by6",
-                "vertical",
-                "text-center",
-                "md-w-full",
-                "items-center"
-              ],
-              "nicename": "Div (#19)",
-              "ct_depth": "2",
-              "original": {
-                "text-align": "center",
-                "align-items": "center",
-                "justify-content": "center"
-              },
-              "activeselector": false
-            },
-            "children": [
-              {
-                "id": 131,
-                "name": "ct_headline",
-                "options": {
-                  "ct_id": 131,
-                  "ct_parent": 129,
-                  "selector": "headline-131-22",
-                  "classes": [
-                    "text-shadow",
-                    "color-white",
-                    "h1-alt"
-                  ],
-                  "activeselector": "h1-alt",
-                  "nicename": "Heading (#26)",
-                  "ct_depth": false,
-                  "ct_content": "<span id=\"ct-placeholder-138\"><\/span>",
-                  "original": []
-                },
-                "depth": 3,
-                "children": [
-                  {
-                    "id": 138,
-                    "name": "ct_span",
-                    "options": {
-                      "ct_id": 138,
-                      "ct_parent": 131,
-                      "selector": "span-138-22",
-                      "original": [],
-                      "nicename": "Span (#138)",
-                      "ct_content": "[oxygen ct_sign_sha256='4953f0e5dc8434ef3d8b60770b89ba38e6fac278d3c8586b494618d2d88f933e' data='title' ]"
-                    },
-                    "depth": 4
-                  }
-                ]
-              }
-            ],
-            "depth": 2
-          }
-        ],
-        "depth": 1
-      },
-      {
-        "id": 8,
-        "name": "ct_section",
-        "options": {
-          "ct_id": 8,
-          "ct_parent": 0,
-          "selector": "section-8-22",
-          "classes": [
-            "items-center",
-            "text-center",
-            "bg"
-          ],
-          "activeselector": false,
-          "nicename": "TextContent6",
-          "ct_depth": 1
-        },
-        "children": [
-          {
-            "id": 9,
-            "name": "ct_div_block",
-            "options": {
-              "ct_id": 9,
-              "ct_parent": 8,
-              "selector": "div_block-9-22",
-              "classes": [
-                "w-3by4",
-                "md-w-full"
-              ],
-              "activeselector": false,
-              "nicename": "Div (#2)",
-              "ct_depth": "2",
-              "original": {
-                "text-align": "left",
-                "align-items": "center"
-              }
-            },
-            "children": [
-              {
-                "id": 10,
-                "name": "ct_headline",
-                "options": {
-                  "ct_id": 10,
-                  "ct_parent": 9,
-                  "selector": "headline-10-22",
-                  "original": {
-                    "tag": "h2"
-                  },
-                  "classes": [
-                    "color-dark",
-                    "mb-6",
-                    "h1-alt"
-                  ],
-                  "activeselector": "h1-alt",
-                  "nicename": "Heading (#3)",
-                  "ct_depth": false,
-                  "ct_content": h2Heading
-                },
-                "depth": 3
-              },
-              {
-                "id": 11,
-                "name": "ct_text_block",
-                "options": {
-                  "ct_id": 11,
-                  "ct_parent": 9,
-                  "selector": "text_block-11-22",
-                  "classes": [
-                    "color-paragraph"
-                  ],
-                  "activeselector": false,
-                  "nicename": "Text (#11)",
-                  "ct_depth": false,
-                  "ct_content": h2Content,
-                  "original": []
-                },
-                "depth": 3
-              }
-            ],
-            "depth": 2
-          }
-        ],
-        "depth": 1
-      },
-      {
-        "id": 71,
-        "name": "ct_section",
-        "options": {
-          "ct_id": 71,
-          "ct_parent": 0,
-          "selector": "section-71-22",
-          "nicename": "Team 25",
-          "classes": [
-            "bg-alt"
-          ],
-          "activeselector": "bg-alt",
-          "ct_depth": 1,
-          "original": {
-            "background-image": "https:\/\/jsontesting.tempurl.host\/wp-content\/uploads\/2022\/12\/3_nov_17-Converted-01.svg",
-            "background-size": "contain",
-            "background-repeat": "no-repeat",
-            "background-position-left-unit": "%",
-            "background-position-left": "100"
-          }
-        },
-        "children": [
-          {
-            "id": 144,
-            "name": "ct_new_columns",
-            "options": {
-              "ct_id": 144,
-              "ct_parent": 71,
-              "selector": "new_columns-144-22",
-              "original": {
-                "image_type": "2",
-                "attachment_size": "full"
-              },
-              "nicename": "Columns (#144)",
-              "activeselector": false
-            },
-            "depth": 2,
-            "children": [
-              {
-                "id": 145,
-                "name": "ct_div_block",
-                "options": {
-                  "ct_id": 145,
-                  "ct_parent": 144,
-                  "selector": "div_block-145-22",
-                  "original": {
-                    "image_type": "2",
-                    "attachment_size": "full",
-                    "width": "50",
-                    "width-unit": "%"
-                  },
-                  "nicename": "Div (#145)",
-                  "activeselector": false
-                },
-                "depth": 2,
-                "children": [
-                  {
-                    "id": 75,
-                    "name": "ct_headline",
-                    "options": {
-                      "ct_id": 75,
-                      "ct_parent": 145,
-                      "selector": "headline-75-22",
-                      "original": {
-                        "tag": "h3"
-                      },
-                      "classes": [
-                        "lg-mr-0",
-                        "mr-3",
-                        "h3",
-                        "color-dark"
-                      ],
-                      "activeselector": "color-dark",
-                      "ct_depth": false,
-                      "nicename": "Heading (#75)",
-                      "ct_content": `${h3Heading} heading&nbsp;`
-                    },
-                    "depth": 3
-                  },
-                  {
-                    "id": 107,
-                    "name": "ct_text_block",
-                    "options": {
-                      "ct_id": 107,
-                      "ct_parent": 145,
-                      "selector": "text_block-107-22",
-                      "classes": [
-                        "color-paragraph",
-                        "mt-4"
-                      ],
-                      "activeselector": "mt-4",
-                      "nicename": "Text (#107)",
-                      "ct_depth": false,
-                      "ct_content": h3Content,
-                      "original": []
-                    },
-                    "depth": 3
-                  },
-                  {
-                    "id": 140,
-                    "name": "ct_link_text",
-                    "options": {
-                      "ct_id": 140,
-                      "ct_parent": 145,
-                      "selector": "link_text-140-22",
-                      "original": {
-                        "url": "\/contact"
-                      },
-                      "ct_content": "Contact Us",
-                      "nicename": "Button Primary",
-                      "classes": [
-                        "btn-m",
-                        "btn-primary",
-                        "mt-8"
-                      ],
-                      "activeselector": "mt-8"
-                    },
-                    "depth": 3
-                  }
-                ]
-              },
-              {
-                "id": 146,
-                "name": "ct_div_block",
-                "options": {
-                  "ct_id": 146,
-                  "ct_parent": 144,
-                  "selector": "div_block-146-22",
-                  "original": {
-                    "image_type": "2",
-                    "attachment_size": "full",
-                    "width": "50",
-                    "width-unit": "%"
-                  },
-                  "nicename": "Div (#146)",
-                  "activeselector": false
-                },
-                "depth": 2,
-                "children": [
-                  {
-                    "id": 152,
-                    "name": "ct_image",
-                    "options": {
-                      "ct_id": 152,
-                      "ct_parent": 146,
-                      "selector": "image-152-22",
-                      "original": {
-                        "image_type": "2",
-                        "attachment_size": "full",
-                        "attachment_id": 77,
-                        "attachment_height": 661,
-                        "attachment_width": 880,
-                        "attachment_url": "https:\/\/jsontesting.tempurl.host\/wp-content\/uploads\/2023\/02\/home_sec1_880x680.jpg",
-                        "width": "880"
-                      },
-                      "nicename": "Image (#152)",
-                      "activeselector": "rounded-lg",
-                      "classes": [
-                        "rounded-lg"
-                      ]
-                    },
-                    "depth": 3
-                  }
-                ]
-              }
-            ]
-          }
-        ],
-        "depth": 1
-      }
-    ],
-    "meta_keys": [
-      "oxygen_lock_post_edit_mode"
-    ],
-    "outerTemplateData": {
-      "edit_link": "https:\/\/jsontesting.tempurl.host\/wp-admin\/post.php?post=15&action=edit",
-      "template_name": "main"
+          ]
+        })
+      });
+
+      const data = await response.json(); // Get JSON response
+      const dataJson = data["choices"][0]["message"]["content"]; // Grab JSON string
+      console.log(data);
+      console.log(dataJson);
+      return JSON.parse(dataJson);
+    }
+    catch (err) {
+      next(err); // Pass error to error handler
     }
   }
+  const getOxyContent = (responseContent) => {
+    const responseContent = getContent(userMessage);
+    console.log(responseContent);
+    let h2Content = responseContent["h2Content"]; // About Company
+    let h2Heading = responseContent["h2Heading"]; // About company
+    let h3Heading = responseContent["h3Content"]; // CTA
+    let h3Content = responseContent["h3Heading"]; // CTA Content
 
-  try {
-    const data = JSON.stringify(aboutPageJson);
-    console.log(data);
-    res.json(data); // send JSON string for content area
+
+    let aboutPageJson = {
+      "id": 0,
+      "name": "root",
+      "depth": 0,
+      "children": [
+        {
+          "id": 128,
+          "name": "ct_section",
+          "options": {
+            "ct_id": 128,
+            "ct_parent": 0,
+            "selector": "section-128-22",
+            "original": {
+              "background-image": "https:\/\/jsontesting.tempurl.host\/wp-content\/uploads\/2023\/02\/about_hero_1920x520.jpg",
+              "overlay-color": "rgba(255,255,255,0.25)",
+              "background-size": "cover",
+              "background-repeat": "no-repeat",
+              "background-position-top": "20",
+              "background-position-top-unit": "%",
+              "container-padding-top-unit": "",
+              "container-padding-bottom-unit": "",
+              "container-padding-right-unit": "",
+              "container-padding-left-unit": "",
+              "padding-top-unit": "",
+              "padding-right-unit": "",
+              "padding-bottom-unit": "",
+              "padding-left-unit": "",
+              "margin-top-unit": "",
+              "margin-right-unit": "",
+              "margin-bottom-unit": "",
+              "margin-left-unit": "",
+              "width-unit": "",
+              "min-width-unit": "",
+              "min-width": "",
+              "max-width-unit": "",
+              "max-width": "",
+              "height-unit": "",
+              "height": "",
+              "min-height-unit": "",
+              "min-height": "",
+              "max-height-unit": "",
+              "max-height": "",
+              "background-position-left-unit": "%",
+              "background-position-left": "100",
+              "background-blend-mode": "multiply",
+              "display": "flex",
+              "flex-direction": "row",
+              "align-items": "center",
+              "justify-content": "center"
+            },
+            "nicename": "Hero 8",
+            "classes": [
+              "masthd-height"
+            ],
+            "activeselector": false,
+            "ct_depth": 1,
+            "media": {
+              "phone-landscape": {
+                "original": {
+                  "background-position-left": "65",
+                  "background-position-left-unit": "%"
+                }
+              },
+              "phone-portrait": {
+                "original": {
+                  "background-position-left": "50",
+                  "background-position-left-unit": "%"
+                }
+              }
+            }
+          },
+          "children": [
+            {
+              "id": 129,
+              "name": "ct_div_block",
+              "options": {
+                "ct_id": 129,
+                "ct_parent": 128,
+                "selector": "div_block-129-22",
+                "classes": [
+                  "w-5by6",
+                  "vertical",
+                  "text-center",
+                  "md-w-full",
+                  "items-center"
+                ],
+                "nicename": "Div (#19)",
+                "ct_depth": "2",
+                "original": {
+                  "text-align": "center",
+                  "align-items": "center",
+                  "justify-content": "center"
+                },
+                "activeselector": false
+              },
+              "children": [
+                {
+                  "id": 131,
+                  "name": "ct_headline",
+                  "options": {
+                    "ct_id": 131,
+                    "ct_parent": 129,
+                    "selector": "headline-131-22",
+                    "classes": [
+                      "text-shadow",
+                      "color-white",
+                      "h1-alt"
+                    ],
+                    "activeselector": "h1-alt",
+                    "nicename": "Heading (#26)",
+                    "ct_depth": false,
+                    "ct_content": "<span id=\"ct-placeholder-138\"><\/span>",
+                    "original": []
+                  },
+                  "depth": 3,
+                  "children": [
+                    {
+                      "id": 138,
+                      "name": "ct_span",
+                      "options": {
+                        "ct_id": 138,
+                        "ct_parent": 131,
+                        "selector": "span-138-22",
+                        "original": [],
+                        "nicename": "Span (#138)",
+                        "ct_content": "[oxygen ct_sign_sha256='4953f0e5dc8434ef3d8b60770b89ba38e6fac278d3c8586b494618d2d88f933e' data='title' ]"
+                      },
+                      "depth": 4
+                    }
+                  ]
+                }
+              ],
+              "depth": 2
+            }
+          ],
+          "depth": 1
+        },
+        {
+          "id": 8,
+          "name": "ct_section",
+          "options": {
+            "ct_id": 8,
+            "ct_parent": 0,
+            "selector": "section-8-22",
+            "classes": [
+              "items-center",
+              "text-center",
+              "bg"
+            ],
+            "activeselector": false,
+            "nicename": "TextContent6",
+            "ct_depth": 1
+          },
+          "children": [
+            {
+              "id": 9,
+              "name": "ct_div_block",
+              "options": {
+                "ct_id": 9,
+                "ct_parent": 8,
+                "selector": "div_block-9-22",
+                "classes": [
+                  "w-3by4",
+                  "md-w-full"
+                ],
+                "activeselector": false,
+                "nicename": "Div (#2)",
+                "ct_depth": "2",
+                "original": {
+                  "text-align": "left",
+                  "align-items": "center"
+                }
+              },
+              "children": [
+                {
+                  "id": 10,
+                  "name": "ct_headline",
+                  "options": {
+                    "ct_id": 10,
+                    "ct_parent": 9,
+                    "selector": "headline-10-22",
+                    "original": {
+                      "tag": "h2"
+                    },
+                    "classes": [
+                      "color-dark",
+                      "mb-6",
+                      "h1-alt"
+                    ],
+                    "activeselector": "h1-alt",
+                    "nicename": "Heading (#3)",
+                    "ct_depth": false,
+                    "ct_content": h2Heading
+                  },
+                  "depth": 3
+                },
+                {
+                  "id": 11,
+                  "name": "ct_text_block",
+                  "options": {
+                    "ct_id": 11,
+                    "ct_parent": 9,
+                    "selector": "text_block-11-22",
+                    "classes": [
+                      "color-paragraph"
+                    ],
+                    "activeselector": false,
+                    "nicename": "Text (#11)",
+                    "ct_depth": false,
+                    "ct_content": h2Content,
+                    "original": []
+                  },
+                  "depth": 3
+                }
+              ],
+              "depth": 2
+            }
+          ],
+          "depth": 1
+        },
+        {
+          "id": 71,
+          "name": "ct_section",
+          "options": {
+            "ct_id": 71,
+            "ct_parent": 0,
+            "selector": "section-71-22",
+            "nicename": "Team 25",
+            "classes": [
+              "bg-alt"
+            ],
+            "activeselector": "bg-alt",
+            "ct_depth": 1,
+            "original": {
+              "background-image": "https:\/\/jsontesting.tempurl.host\/wp-content\/uploads\/2022\/12\/3_nov_17-Converted-01.svg",
+              "background-size": "contain",
+              "background-repeat": "no-repeat",
+              "background-position-left-unit": "%",
+              "background-position-left": "100"
+            }
+          },
+          "children": [
+            {
+              "id": 144,
+              "name": "ct_new_columns",
+              "options": {
+                "ct_id": 144,
+                "ct_parent": 71,
+                "selector": "new_columns-144-22",
+                "original": {
+                  "image_type": "2",
+                  "attachment_size": "full"
+                },
+                "nicename": "Columns (#144)",
+                "activeselector": false
+              },
+              "depth": 2,
+              "children": [
+                {
+                  "id": 145,
+                  "name": "ct_div_block",
+                  "options": {
+                    "ct_id": 145,
+                    "ct_parent": 144,
+                    "selector": "div_block-145-22",
+                    "original": {
+                      "image_type": "2",
+                      "attachment_size": "full",
+                      "width": "50",
+                      "width-unit": "%"
+                    },
+                    "nicename": "Div (#145)",
+                    "activeselector": false
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "id": 75,
+                      "name": "ct_headline",
+                      "options": {
+                        "ct_id": 75,
+                        "ct_parent": 145,
+                        "selector": "headline-75-22",
+                        "original": {
+                          "tag": "h3"
+                        },
+                        "classes": [
+                          "lg-mr-0",
+                          "mr-3",
+                          "h3",
+                          "color-dark"
+                        ],
+                        "activeselector": "color-dark",
+                        "ct_depth": false,
+                        "nicename": "Heading (#75)",
+                        "ct_content": `${h3Heading} heading&nbsp;`
+                      },
+                      "depth": 3
+                    },
+                    {
+                      "id": 107,
+                      "name": "ct_text_block",
+                      "options": {
+                        "ct_id": 107,
+                        "ct_parent": 145,
+                        "selector": "text_block-107-22",
+                        "classes": [
+                          "color-paragraph",
+                          "mt-4"
+                        ],
+                        "activeselector": "mt-4",
+                        "nicename": "Text (#107)",
+                        "ct_depth": false,
+                        "ct_content": h3Content,
+                        "original": []
+                      },
+                      "depth": 3
+                    },
+                    {
+                      "id": 140,
+                      "name": "ct_link_text",
+                      "options": {
+                        "ct_id": 140,
+                        "ct_parent": 145,
+                        "selector": "link_text-140-22",
+                        "original": {
+                          "url": "\/contact"
+                        },
+                        "ct_content": "Contact Us",
+                        "nicename": "Button Primary",
+                        "classes": [
+                          "btn-m",
+                          "btn-primary",
+                          "mt-8"
+                        ],
+                        "activeselector": "mt-8"
+                      },
+                      "depth": 3
+                    }
+                  ]
+                },
+                {
+                  "id": 146,
+                  "name": "ct_div_block",
+                  "options": {
+                    "ct_id": 146,
+                    "ct_parent": 144,
+                    "selector": "div_block-146-22",
+                    "original": {
+                      "image_type": "2",
+                      "attachment_size": "full",
+                      "width": "50",
+                      "width-unit": "%"
+                    },
+                    "nicename": "Div (#146)",
+                    "activeselector": false
+                  },
+                  "depth": 2,
+                  "children": [
+                    {
+                      "id": 152,
+                      "name": "ct_image",
+                      "options": {
+                        "ct_id": 152,
+                        "ct_parent": 146,
+                        "selector": "image-152-22",
+                        "original": {
+                          "image_type": "2",
+                          "attachment_size": "full",
+                          "attachment_id": 77,
+                          "attachment_height": 661,
+                          "attachment_width": 880,
+                          "attachment_url": "https:\/\/jsontesting.tempurl.host\/wp-content\/uploads\/2023\/02\/home_sec1_880x680.jpg",
+                          "width": "880"
+                        },
+                        "nicename": "Image (#152)",
+                        "activeselector": "rounded-lg",
+                        "classes": [
+                          "rounded-lg"
+                        ]
+                      },
+                      "depth": 3
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "depth": 1
+        }
+      ],
+      "meta_keys": [
+        "oxygen_lock_post_edit_mode"
+      ],
+      "outerTemplateData": {
+        "edit_link": "https:\/\/jsontesting.tempurl.host\/wp-admin\/post.php?post=15&action=edit",
+        "template_name": "main"
+      }
+    }
+    try {
+      const data = JSON.stringify(aboutPageJson);
+      console.log(data);
+      res.json(data); // send JSON string for content area
+    }
+    catch (err) {
+      next(err); // Pass error to error handler
+    }
   }
-  catch (err) {
-    next(err); // Pass error to error handler
-  }
+  getOxyContent(responseContent);
 });
 
 // Error handler middleware
