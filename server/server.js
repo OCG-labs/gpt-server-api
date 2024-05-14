@@ -695,6 +695,8 @@ app.post('/api/chat/post/contact', async (req, res, next) => {
 app.post('/api/chat/post/about', async (req, res, next) => {
   let userMessage = req.body.message; // Get message from request body
   let responseContent = {};
+  let metaTitle = "";
+  let metaDescription = "";
 
   const getContent = async (userMessage) => {
 
@@ -729,7 +731,7 @@ app.post('/api/chat/post/about', async (req, res, next) => {
       const dataJson = data["choices"][0]["message"]["content"]; // Grab JSON string
       console.log(data);
       console.log(dataJson);
-      return JSON.parse(dataJson);
+      res.json(JSON.parse(dataJson));
     }
     catch (err) {
       next(err); // Pass error to error handler
