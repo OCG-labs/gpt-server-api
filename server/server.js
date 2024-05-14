@@ -936,7 +936,7 @@ app.post('/api/chat/post/about', async (req, res, next) => {
                     "activeselector": "h1-alt",
                     "nicename": "Heading (#3)",
                     "ct_depth": false,
-                    "ct_content": h2Header
+                    "ct_content": h2Heading
                   },
                   "depth": 3
                 },
@@ -1039,7 +1039,7 @@ app.post('/api/chat/post/about', async (req, res, next) => {
                         "activeselector": "color-dark",
                         "ct_depth": false,
                         "nicename": "Heading (#75)",
-                        "ct_content": `${h3Header} heading&nbsp;`
+                        "ct_content": h3Heading
                       },
                       "depth": 3
                     },
