@@ -734,8 +734,8 @@ app.post('/api/chat/post/about', async (req, res, next) => {
       next(err); // Pass error to error handler
     }
   }
-  const getOxyContent = (responseContent) => {
-    const responseContent = getContent(userMessage);
+  const getOxyContent = async () => {
+    const responseContent = await getContent(userMessage);
     console.log(responseContent);
     let h2Content = responseContent["h2Content"]; // About Company
     let h2Heading = responseContent["h2Heading"]; // About company
