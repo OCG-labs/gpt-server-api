@@ -731,7 +731,10 @@ app.post('/api/chat/post/about', async (req, res, next) => {
       const dataJson = data["choices"][0]["message"]["content"]; // Grab JSON string
       console.log(data);
       console.log(dataJson);
-      return JSON.parse(dataJson);
+      let responseData = JSON.parse(dataJson);
+      metaTitle = responseData["metaTitle"];
+      metaDescription = responseData["metaDescription"];
+      return JSON.parse(responseData);
     }
     catch (err) {
       next(err); // Pass error to error handler
@@ -1146,7 +1149,11 @@ app.post('/api/chat/post/about', async (req, res, next) => {
       }
     }
     try {
-      const data = JSON.stringify(aboutPageJson);
+      const data = {
+        data: JSON.stringify(aboutPageJson),
+        metaTitle: metaTitle,
+        metaDescription: metaDescription
+      };
       console.log(data);
       res.json(data); // send JSON string for content area
     }
