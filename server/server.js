@@ -731,7 +731,7 @@ app.post('/api/chat/post/about', async (req, res, next) => {
       const dataJson = data["choices"][0]["message"]["content"]; // Grab JSON string
       console.log(data);
       console.log(dataJson);
-      res.json(JSON.parse(dataJson));
+      return JSON.parse(dataJson);
     }
     catch (err) {
       next(err); // Pass error to error handler
