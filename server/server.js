@@ -91,17 +91,14 @@ app.post('/api/chat/article/post', async (req, res, next) => {
   let username = 'ocgdev';
   let password = req.body.password;
   let apiUrl = `${req.body.url}/wp-json/wp/v2/posts`;
+  let postId;
+  let metaUrl = `${req.body.url}/wp-json/wp/v2/posts${postId}/meta`;
   let postObj = {
     "title": req.body.title,
 
     "content": `${req.body.content}`,
 
     "author": req.body.author,
-
-    "meta": {
-      "title": req.body.metaTitle,
-      "description": req.body.metaDescription,
-    },
 
     "status": 'draft'
   }
@@ -119,8 +116,36 @@ app.post('/api/chat/article/post', async (req, res, next) => {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
+    postId = data.id;
     console.log(data);
     res.json(data);
+
+    const addMetaTitle = await fetch(metaUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64')
+      },
+      body: JSON.stringify({
+        key: 'title',
+        value: req.body.metaTitle
+      })
+    });
+    let metaTitle = await addMetaTitle.json();
+    console.log(metaTitle);
+    const addMetaDescription = await fetch(metaUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64')
+      },
+      body: JSON.stringify({
+        key: 'description',
+        value: req.body.metaDescription
+      })
+    });
+    let metaDescription = await addMetaDescription.json();
+    console.log(metaDescription);
   }
   catch (err) {
     next(err); // Pass error to error handler
