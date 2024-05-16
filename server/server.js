@@ -113,7 +113,8 @@ app.post('/api/chat/article/post', async (req, res, next) => {
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
-    res.json(postObj);
+    const data = await response.json();
+    res.json(data);
   }
   catch (err) {
     next(err); // Pass error to error handler
