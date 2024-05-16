@@ -121,6 +121,7 @@ app.post('/api/chat/article/post', async (req, res, next) => {
 // Page Routes
 
 app.post('/api/chat/post/contact', async (req, res, next) => {
+  console.log('request recieved');
   let openHours = req.body.openHours;
   let closedHours = req.body.closedHours;
   let address = req.body.address;
