@@ -96,6 +96,8 @@ app.post('/api/chat/article/post', async (req, res, next) => {
 
     "content": `${req.body.content}`,
 
+    "author": req.body.author,
+
     "status": 'draft'
   }
   try {
