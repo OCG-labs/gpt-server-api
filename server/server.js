@@ -98,6 +98,11 @@ app.post('/api/chat/article/post', async (req, res, next) => {
 
     "author": req.body.author,
 
+    "meta": {
+      "title": req.body.metaTitle,
+      "description": req.body.metaDescription,
+    },
+
     "status": 'draft'
   }
   try {
