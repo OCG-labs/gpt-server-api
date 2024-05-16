@@ -91,8 +91,6 @@ app.post('/api/chat/article/post', async (req, res, next) => {
   let username = 'ocgdev';
   let password = req.body.password;
   let apiUrl = `${req.body.url}/wp-json/wp/v2/posts`;
-  let postId;
-  let metaUrl = `${req.body.url}/wp-json/wp/v2/posts${postId}/meta`;
   let postObj = {
     "title": req.body.title,
 
@@ -116,7 +114,8 @@ app.post('/api/chat/article/post', async (req, res, next) => {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
-    postId = data.id;
+    let postId = data.id;
+    let metaUrl = `${req.body.url}/wp-json/wp/v2/posts/${postId}/meta`;
     console.log(data);
     res.json(data);
 
