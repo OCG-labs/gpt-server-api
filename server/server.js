@@ -133,6 +133,7 @@ app.post('/api/chat/article/post', async (req, res, next) => {
     });
     let metaTitle = await addMetaTitle.json();
     console.log(metaTitle);
+    console.log(metaUrl);
     const addMetaDescription = await fetch(metaUrl, {
       method: 'POST',
       headers: {
