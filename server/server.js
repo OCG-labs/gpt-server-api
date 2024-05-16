@@ -115,7 +115,7 @@ app.post('/api/chat/article/post', async (req, res, next) => {
     }
     const data = await response.json();
     let postId = data.id;
-    let metaUrl = `${req.body.url}/wp-json/wp/v2/posts/${postId}/meta`;
+    let metaUrl = `${req.body.url}/wp-json/wp/v2/posts/?p=${postId}/meta`;
     console.log(data);
     res.json(data);
 
