@@ -98,6 +98,10 @@ app.post('/api/chat/article/post', async (req, res, next) => {
 
     "author": req.body.author,
 
+    "meta": {
+      '_yoast_wpseo_metadesc': req.body.metaDescription,
+    },
+
     "status": 'draft'
   }
   try {
@@ -119,22 +123,22 @@ app.post('/api/chat/article/post', async (req, res, next) => {
     console.log(data);
     res.json(data);
 
-    const addMetaTitle = await fetch(metaUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64')
-      },
-      body: JSON.stringify({
-        meta: {
-          '_yoast_wpseo_metadesc': req.body.metaDescription,
-        }
-      })
-    });
-    const metaTitle = await addMetaTitle.json();
-    console.log(metaTitle);
-    console.log(metaUrl);
-    console.log(req.body.metaTitle);
+    // const addMetaTitle = await fetch(metaUrl, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     'Authorization': 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64')
+    //   },
+    //   body: JSON.stringify({
+    //     meta: {
+    //       '_yoast_wpseo_metadesc': req.body.metaDescription,
+    //     }
+    //   })
+    // });
+    // const metaTitle = await addMetaTitle.json();
+    // console.log(metaTitle);
+    // console.log(metaUrl);
+    // console.log(req.body.metaTitle);
     //   const addMetaDescription = await fetch(metaUrl, {
     //     method: 'POST',
     //     headers: {
