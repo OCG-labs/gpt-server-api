@@ -113,32 +113,8 @@ app.post('/api/chat/article/post', async (req, res, next) => {
     }
 
     const data = await response.json();
-    let postId = data.id;
 
-    // Update the post with the meta description
-    let updateUrl = `${req.body.url}/wp-json/wp/v2/posts/${postId}`;
-    let updateObj = {
-      "meta": {
-        '_yoast_wpseo_metadesc': req.body.metaDescription
-      }
-    };
-
-    const updateResponse = await fetch(updateUrl, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64')
-      },
-      body: JSON.stringify(updateObj)
-    });
-
-    if (!updateResponse.ok) {
-      throw new Error(`HTTP error! status: ${updateResponse.status}`);
-    }
-
-    const updatedData = await updateResponse.json();
-    console.log(updatedData);
-    res.json(updatedData);
+    res.json(data);
   }
   catch (err) {
     next(err); // Pass error to error handler
