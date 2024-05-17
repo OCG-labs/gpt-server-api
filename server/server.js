@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import fetch, { Headers } from 'node-fetch';
+import fetch from 'node-fetch';
 import fs from 'fs';
 import { Buffer } from 'buffer';
 
@@ -123,6 +123,7 @@ app.post('/api/chat/article/post', async (req, res, next) => {
 
 // Page Routes
 
+// Generate  Oxygen JSON for contact page
 app.post('/api/chat/post/contact', async (req, res, next) => {
   let openHours = req.body.openHours;
   let closedHours = req.body.closedHours;
@@ -131,6 +132,7 @@ app.post('/api/chat/post/contact', async (req, res, next) => {
   let primaryPhone = req.body.primaryPhone;
   let map = req.body.map;
 
+  // Oxygen JSON
   let contactPageJson = {
     "id": 0,
     "name": "root",
@@ -695,12 +697,14 @@ app.post('/api/chat/post/contact', async (req, res, next) => {
   }
 });
 
+// Generate  Oxygen JSON for about page
 app.post('/api/chat/post/about', async (req, res, next) => {
   let userMessage = req.body.message; // Get message from request body
   let responseContent = {};
   let metaTitle = "";
   let metaDescription = "";
 
+  // Use chat to get content
   const getContent = async (userMessage) => {
 
     if (userMessage === "") {
@@ -743,6 +747,8 @@ app.post('/api/chat/post/about', async (req, res, next) => {
       next(err); // Pass error to error handler
     }
   }
+
+  // Format content for Oxygen JSON
   const getOxyContent = async () => {
     responseContent = await getContent(userMessage);
     console.log(responseContent);
