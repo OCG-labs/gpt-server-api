@@ -28,11 +28,11 @@ You need to have Node.js and npm installed on your machine. If you don't have th
 
 * /api/test - GET request to calls a free api for testing purposes.
   
-#### API Usage
+### API Usage
 
 Interaction with the OpenAI API is made easy with this simple Node server. 
 
-##### /chat/article
+#### /chat/article
 
 * Edit the GPT model to your liking in server/server.js *IMPORTANT NOTE: CHANGING THE MODEL CAN HAVE UNFORSEEN BUGS* 
 
