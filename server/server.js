@@ -98,6 +98,12 @@ app.post('/api/chat/article/post', async (req, res, next) => {
 
     "author": req.body.author,
 
+    "meta": {
+      "location": "NYC",
+      "date": "never",
+      "event_url": "http: //google.com"
+    },
+
     "status": 'draft'
   }
   try {
@@ -119,33 +125,33 @@ app.post('/api/chat/article/post', async (req, res, next) => {
     console.log(data);
     res.json(data);
 
-    const addMetaTitle = await fetch(metaUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64')
-      },
-      body: JSON.stringify({
-        key: 'title',
-        value: req.body.metaTitle
-      })
-    });
-    let metaTitle = await addMetaTitle.json();
-    console.log(metaTitle);
-    console.log(metaUrl);
-    const addMetaDescription = await fetch(metaUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64')
-      },
-      body: JSON.stringify({
-        key: 'description',
-        value: req.body.metaDescription
-      })
-    });
-    let metaDescription = await addMetaDescription.json();
-    console.log(metaDescription);
+    //   const addMetaTitle = await fetch(metaUrl, {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       'Authorization': 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64')
+    //     },
+    //     body: JSON.stringify({
+    //       key: 'title',
+    //       value: req.body.metaTitle
+    //     })
+    //   });
+    //   let metaTitle = await addMetaTitle.json();
+    //   console.log(metaTitle);
+    //   console.log(metaUrl);
+    //   const addMetaDescription = await fetch(metaUrl, {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //       'Authorization': 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64')
+    //     },
+    //     body: JSON.stringify({
+    //       key: 'description',
+    //       value: req.body.metaDescription
+    //     })
+    //   });
+    //   let metaDescription = await addMetaDescription.json();
+    //   console.log(metaDescription);
   }
   catch (err) {
     next(err); // Pass error to error handler
