@@ -20,15 +20,21 @@ You need to have Node.js and npm installed on your machine. If you don't have th
   
 <img width="1784" alt="Screenshot 2024-05-09 at 10 02 10 AM" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/b2d84e6e-a550-495b-877c-ce71e2d409fd">
 
+* /api/chat/article/post - POST request that posts generated article to specified wordpress site.
+  
+* /api/chat/post/contact - POST request generates a Oxygen JSON output for a contact page.
+  
+* /api/chat/post/about - POST request generates a Oxygen JSON output for a about page.
+
 * /api/test - GET request to calls a free api for testing purposes.
   
-#### API Usage
+### API Usage
 
 Interaction with the OpenAI API is made easy with this simple Node server. 
 
-##### /chat/article
+#### /chat/article
 
-* Edit the GPT model to your liking in server/server.js
+* Edit the GPT model to your liking in server/server.js *IMPORTANT NOTE: CHANGING THE MODEL CAN HAVE UNFORSEEN BUGS* 
 
 <img width="831" alt="Screenshot 2024-05-03 at 12 38 03 PM" src="https://github.com/OCG-labs/gpt-server-api/assets/121247975/7950dd55-63b5-41a4-ba47-59436cf9917e">
 
@@ -118,4 +124,6 @@ Use the parameter section and name it "message". Make the value your prompt to G
 
 * <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/javascript-colored.svg" width="36" height="36" alt="JavaScript" /> - Core language used</a>
 * <a href="https://nodejs.org/en/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/nodejs-colored.svg" width="36" height="36" alt="NodeJS" /> - JavaScript runtime</a>
-* <a href="https://developer.mozilla.org/en-US/docs/Glossary/HTML5" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/html5-colored.svg" width="36" height="36" alt="HTML5" /> Markup language</a>
+* <a href="https://developer.mozilla.org/en-US/docs/Glossary/HTML5" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/html5-colored.svg" width="36" height="36" alt="HTML5" /> - Markup language</a>
+* <a href="https://www.docker.com/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/docker-colored.svg" width="36" height="36" alt="Docker" /> - Deployment solution</a>
+* <a href="https://render.com/" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/render-colored.svg" width="36" height="36" alt="Render" /> - Deployment host</a>
