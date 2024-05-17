@@ -137,6 +137,7 @@ app.post('/api/chat/article/post', async (req, res, next) => {
     }
 
     const updatedData = await updateResponse.json();
+    console.log(updatedData);
     res.json(updatedData);
   }
   catch (err) {
