@@ -115,7 +115,7 @@ app.post('/api/chat/article/post', async (req, res, next) => {
     }
     const data = await response.json();
     let postId = data.id;
-    let metaUrl = `${req.body.url}/wp-json/wp/v2/posts/?p=${postId}/meta`;
+    let metaUrl = `${req.body.url}/wp-json/wp/v2/posts/?p=${postId}`;
     console.log(data);
     res.json(data);
 
@@ -126,8 +126,9 @@ app.post('/api/chat/article/post', async (req, res, next) => {
         'Authorization': 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64')
       },
       body: JSON.stringify({
-        key: 'title',
-        value: req.body.metaTitle
+        meta: {
+          '_yoast_wpseo_metadesc': req.body.metaDescription,
+        }
       })
     });
     const metaTitle = await addMetaTitle.json();
