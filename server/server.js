@@ -98,12 +98,6 @@ app.post('/api/chat/article/post', async (req, res, next) => {
 
     "author": req.body.author,
 
-    "meta": {
-      "location": "NYC",
-      "date": "never",
-      "event_url": "http: //google.com"
-    },
-
     "status": 'draft'
   }
   try {
@@ -125,20 +119,21 @@ app.post('/api/chat/article/post', async (req, res, next) => {
     console.log(data);
     res.json(data);
 
-    //   const addMetaTitle = await fetch(metaUrl, {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //       'Authorization': 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64')
-    //     },
-    //     body: JSON.stringify({
-    //       key: 'title',
-    //       value: req.body.metaTitle
-    //     })
-    //   });
-    //   let metaTitle = await addMetaTitle.json();
-    //   console.log(metaTitle);
-    //   console.log(metaUrl);
+    const addMetaTitle = await fetch(metaUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64')
+      },
+      body: JSON.stringify({
+        key: 'title',
+        value: req.body.metaTitle
+      })
+    });
+    const metaTitle = await addMetaTitle.json();
+    console.log(metaTitle);
+    console.log(metaUrl);
+    console.log(req.body.metaTitle);
     //   const addMetaDescription = await fetch(metaUrl, {
     //     method: 'POST',
     //     headers: {
