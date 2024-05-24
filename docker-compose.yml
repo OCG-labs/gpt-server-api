@@ -7,7 +7,7 @@ services:
     container_name:  chatgptapi
     restart: unless-stopped
     networks:
-      ocgdevapinetwork:
+      ocgapinetwork:
         ipv4_address: ${GPT_CONTAINER_IP}
     ports:
       - "3000:3000"
@@ -23,5 +23,5 @@ secrets:
     file: ${OPENAI_API_KEY_FILE}
 
 networks:
-  ocgdevapinetwork:
+  ocgapinetwork:
     external: true
