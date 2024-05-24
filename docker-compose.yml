@@ -1,6 +1,14 @@
+version:  "3.8"
+
 services:
-  app:
+
+  chatgptapi:
     build: .
+    container_name:  chatgptapi
+    restart: unless-stopped
+    networks:
+      ocgdevapinetwork:
+        ipv4_address: ${GPT_CONTAINER_IP}
     ports:
       - "3000:3000"
     volumes:
@@ -12,4 +20,8 @@ services:
 
 secrets:
   openai_api_key:
-    file: ./api_key.txt
+    file: ${OPENAI_API_KEY_FILE}
+
+networks:
+  ocgdevapinetwork:
+    external: true
