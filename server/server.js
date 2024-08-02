@@ -49,6 +49,9 @@ app.get('/api/test', async (req, res, next) => {
 app.post('/api/chat/article', async (req, res, next) => {
   let userMessage = req.body.message; // Get message from request body
 
+  console.log("RECEIVED MESSAGE:");
+  console.log(userMessage);
+
   if (userMessage === "") {
     return res.status(400).send("Message cannot be empty");
   }
@@ -76,10 +79,21 @@ app.post('/api/chat/article', async (req, res, next) => {
     });
 
     const data = await response.json(); // Get JSON response
+
+    console.log("RECEIVED DATA FROM CHATGPT:");
     console.log(data);
+
     const dataJson = data["choices"][0]["message"]["content"]; // Grab JSON string
+
+    console.log("RECEIVED MESSAGE CONTENT FROM CHATGPT:");
     console.log(dataJson);
-    res.json(JSON.parse(dataJson)); // Chat String output
+
+    const dataJsonParse = JSON.parse(dataJson);
+
+    console.log("PARSED JSON MESSAGE:");
+    console.log(dataJsonParse);
+
+    res.json(dataJsonParse); // Chat String output
   }
   catch (err) {
     next(err); // Pass error to error handler
